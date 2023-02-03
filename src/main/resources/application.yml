@@ -1,2 +1,11 @@
 server:
   port: 8888
+
+# thymeleaf 配置
+spring:
+  thymeleaf:
+    suffix: html
+    encoding: utf-8
+    mode: HTML5
+    cache: false
+    prefix: classpath:/templates/
