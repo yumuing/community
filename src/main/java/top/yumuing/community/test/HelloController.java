@@ -2,10 +2,13 @@ package top.yumuing.community.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/yumuing")
@@ -64,10 +67,28 @@ public class HelloController {
     @RequestMapping(path = "/test",method = RequestMethod.GET)
     public ModelAndView test(){
         ModelAndView mav = new ModelAndView();
-        mav.addObject("name","30");
-        mav.addObject("age","hdciuwhe");
-        mav.setViewName("demo/view");
+        mav.addObject("name","hhh");
+        mav.addObject("age",30);
+        mav.setViewName("/demo/view");
         return mav;
+    }
+
+    @RequestMapping(path = "/test02",method = RequestMethod.GET)
+    public String test02(Model model){
+        model.addAttribute("name","hhhh");
+        model.addAttribute("age",16);
+        return "/demo/view";
+    }
+
+//    响应 json 数据
+    @RequestMapping(path = "/emp",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> getEmp(){
+        Map<String,Object> emp = new HashMap<>();
+        emp.put("name","张三");
+        emp.put("age",16);
+        emp.put("code",778522);
+        return emp;
     }
 }
 

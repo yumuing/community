@@ -4,8 +4,23 @@ server:
 # thymeleaf 配置
 spring:
   thymeleaf:
-    suffix: html
+    suffix: .html
     encoding: utf-8
     mode: HTML5
     cache: false
-    prefix: classpath:/templates/
+    prefix: classpath:/templates
+# mysql 配置
+  datasource:
+    username: root
+    password: yumuing
+    url: jdbc:mysql://localhost:3306/community?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# mybatis-plus 配置
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
