@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.yumuing.community.mapper.MessageMapper">
+
+    <resultMap id="BaseResultMap" type="top.yumuing.community.entity.Message">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="fromId" column="from_id" jdbcType="INTEGER"/>
+            <result property="toId" column="to_id" jdbcType="INTEGER"/>
+            <result property="conversationId" column="conversation_id" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,from_id,to_id,
+        conversation_id,content,status,
+        create_time
+    </sql>
+</mapper>

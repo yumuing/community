@@ -10,11 +10,11 @@ import lombok.Data;
 
 /**
  * 
- * @TableName user
+ * @TableName discuss_post
  */
-@TableName(value ="user")
+@TableName(value ="discuss_post")
 @Data
-public class User implements Serializable {
+public class DiscussPost implements Serializable {
     /**
      * 
      */
@@ -24,47 +24,42 @@ public class User implements Serializable {
     /**
      * 
      */
-    private String username;
+    private String userId;
 
     /**
      * 
      */
-    private String password;
+    private String title;
 
     /**
      * 
      */
-    private String salt;
+    private String content;
 
     /**
-     * 
-     */
-    private String email;
-
-    /**
-     * 0-普通用户; 1-超级管理员; 2-版主;
+     * 0-普通; 1-置顶;
      */
     private Integer type;
 
     /**
-     * 0-未激活; 1-已激活;
+     * 0-正常; 1-精华; 2-拉黑;
      */
     private Integer status;
 
     /**
      * 
      */
-    private String activationCode;
-
-    /**
-     * 
-     */
-    private String headerUrl;
-
-    /**
-     * 
-     */
     private Date createTime;
+
+    /**
+     * 
+     */
+    private Integer commentCount;
+
+    /**
+     * 
+     */
+    private Double score;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -80,17 +75,16 @@ public class User implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        User other = (User) that;
+        DiscussPost other = (DiscussPost) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
-            && (this.getSalt() == null ? other.getSalt() == null : this.getSalt().equals(other.getSalt()))
-            && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getActivationCode() == null ? other.getActivationCode() == null : this.getActivationCode().equals(other.getActivationCode()))
-            && (this.getHeaderUrl() == null ? other.getHeaderUrl() == null : this.getHeaderUrl().equals(other.getHeaderUrl()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getCommentCount() == null ? other.getCommentCount() == null : this.getCommentCount().equals(other.getCommentCount()))
+            && (this.getScore() == null ? other.getScore() == null : this.getScore().equals(other.getScore()));
     }
 
     @Override
@@ -98,15 +92,14 @@ public class User implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
-        result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
-        result = prime * result + ((getSalt() == null) ? 0 : getSalt().hashCode());
-        result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
-        result = prime * result + ((getActivationCode() == null) ? 0 : getActivationCode().hashCode());
-        result = prime * result + ((getHeaderUrl() == null) ? 0 : getHeaderUrl().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getCommentCount() == null) ? 0 : getCommentCount().hashCode());
+        result = prime * result + ((getScore() == null) ? 0 : getScore().hashCode());
         return result;
     }
 
@@ -117,15 +110,14 @@ public class User implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", username=").append(username);
-        sb.append(", password=").append(password);
-        sb.append(", salt=").append(salt);
-        sb.append(", email=").append(email);
+        sb.append(", userId=").append(userId);
+        sb.append(", title=").append(title);
+        sb.append(", content=").append(content);
         sb.append(", type=").append(type);
         sb.append(", status=").append(status);
-        sb.append(", activationCode=").append(activationCode);
-        sb.append(", headerUrl=").append(headerUrl);
         sb.append(", createTime=").append(createTime);
+        sb.append(", commentCount=").append(commentCount);
+        sb.append(", score=").append(score);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
