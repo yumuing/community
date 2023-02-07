@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ContextConfiguration;
-import top.yumuing.community.emtity.User;
+import top.yumuing.community.entity.User;
 import top.yumuing.community.mapper.UserMapper;
 import top.yumuing.community.test.TestBeanManagement;
 
@@ -64,4 +65,15 @@ class CommunityApplicationTests implements ApplicationContextAware {
         list.forEach(item-> System.out.println(item));
     }
 
+    @Test
+    void cotextLoadsThree(){
+        List<User> users = userMapper.selectAllByIdOrderByAge(3);
+        users.forEach(item-> System.out.println(item));
+    }
+
+    @Test
+    void cotextLoadsFour(){
+        List<User> users = userMapper.selectAllByIdOrderByAge(3);
+        users.forEach(item-> System.out.println(item));
+    }
 }
