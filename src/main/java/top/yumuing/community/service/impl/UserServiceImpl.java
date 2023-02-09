@@ -1,6 +1,7 @@
 package top.yumuing.community.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import top.yumuing.community.entity.User;
 import top.yumuing.community.service.UserService;
 import top.yumuing.community.mapper.UserMapper;
@@ -15,6 +16,13 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     implements UserService{
 
+    @Resource
+    private UserMapper userMapper;
+
+    @Override
+    public User findUserById(int id) {
+        return userMapper.selectOneById(id);
+    }
 }
 
 

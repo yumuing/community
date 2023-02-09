@@ -5,8 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-	<link rel="stylesheet" href="../css/global.css" />
-	<title>牛客网-关注</title>
+	<link rel="stylesheet" href="../../static/css/global.css" />
+	<link rel="stylesheet" href="../../static/css/letter.css" />
+	<title>牛客网-私信列表</title>
 </head>
 <body>
 	<div class="nk-container">
@@ -65,87 +66,239 @@
 					<!-- 选项 -->
 					<ul class="nav nav-tabs mb-3">
 						<li class="nav-item">
-							<a class="nav-link position-relative active" href="followee.html"><i class="text-info">Nowcoder</i> 关注的人</a>
+							<a class="nav-link position-relative active" href="letter.html">朋友私信<span class="badge badge-danger">3</span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link position-relative" href="follower.html">关注 <i class="text-info">Nowcoder</i> 的人</a>
+							<a class="nav-link position-relative" href="notice.html">系统通知<span class="badge badge-danger">27</span></a>
 						</li>
 					</ul>
-					<a href="profile.html" class="text-muted position-absolute rt-0">返回个人主页&gt;</a>
+					<button type="button" class="btn btn-primary btn-sm position-absolute rt-0" data-toggle="modal" data-target="#sendModal">发私信</button>
 				</div>
+				<!-- 弹出框 -->
+				<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">发私信</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="recipient-name" class="col-form-label">发给：</label>
+										<input type="text" class="form-control" id="recipient-name">
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="col-form-label">内容：</label>
+										<textarea class="form-control" id="message-text" rows="10"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+								<button type="button" class="btn btn-primary" id="sendBtn">发送</button>
+							</div>
+						</div>
+					</div>
+				</div>		
+				<!-- 提示框 -->
+				<div class="modal fade" id="hintModal" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="hintModalLabel">提示</h5>
+							</div>
+							<div class="modal-body" id="hintBody">
+								发送完毕!
+							</div>
+						</div>
+					</div>
+				</div>				
 				
-				<!-- 关注列表 -->
+				<!-- 私信列表 -->
 				<ul class="list-unstyled">
 					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
 						<a href="profile.html">
 							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
 						</a>
 						<div class="media-body">
 							<h6 class="mt-0 mb-3">
 								<span class="text-success">落基山脉下的闲人</span>
-								<span class="float-right text-muted font-size-12">关注于 <i>2019-04-28 14:13:25</i></span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
 							</h6>
 							<div>
-								<button type="button" class="btn btn-info btn-sm float-right follow-btn">关注TA</button>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
 							</div>
 						</div>
 					</li>
 					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
 						<a href="profile.html">
 							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
 						</a>
 						<div class="media-body">
 							<h6 class="mt-0 mb-3">
 								<span class="text-success">落基山脉下的闲人</span>
-								<span class="float-right text-muted font-size-12">关注于 <i>2019-04-28 14:13:25</i></span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
 							</h6>
 							<div>
-								<button type="button" class="btn btn-info btn-sm float-right follow-btn">关注TA</button>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
 							</div>
 						</div>
 					</li>
 					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
 						<a href="profile.html">
 							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
 						</a>
 						<div class="media-body">
 							<h6 class="mt-0 mb-3">
 								<span class="text-success">落基山脉下的闲人</span>
-								<span class="float-right text-muted font-size-12">关注于 <i>2019-04-28 14:13:25</i></span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
 							</h6>
 							<div>
-								<button type="button" class="btn btn-info btn-sm float-right follow-btn">关注TA</button>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
 							</div>
 						</div>
 					</li>
 					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
 						<a href="profile.html">
 							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
 						</a>
 						<div class="media-body">
 							<h6 class="mt-0 mb-3">
 								<span class="text-success">落基山脉下的闲人</span>
-								<span class="float-right text-muted font-size-12">关注于 <i>2019-04-28 14:13:25</i></span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
 							</h6>
 							<div>
-								<button type="button" class="btn btn-info btn-sm float-right follow-btn">关注TA</button>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
 							</div>
 						</div>
 					</li>
 					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
 						<a href="profile.html">
 							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
 						</a>
 						<div class="media-body">
 							<h6 class="mt-0 mb-3">
 								<span class="text-success">落基山脉下的闲人</span>
-								<span class="float-right text-muted font-size-12">关注于 <i>2019-04-28 14:13:25</i></span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
 							</h6>
 							<div>
-								<button type="button" class="btn btn-info btn-sm float-right follow-btn">关注TA</button>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
 							</div>
 						</div>
-					</li>																				
+					</li>
+					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
+						<a href="profile.html">
+							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
+						</a>
+						<div class="media-body">
+							<h6 class="mt-0 mb-3">
+								<span class="text-success">落基山脉下的闲人</span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
+							</h6>
+							<div>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
+						<a href="profile.html">
+							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
+						</a>
+						<div class="media-body">
+							<h6 class="mt-0 mb-3">
+								<span class="text-success">落基山脉下的闲人</span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
+							</h6>
+							<div>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
+						<a href="profile.html">
+							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
+						</a>
+						<div class="media-body">
+							<h6 class="mt-0 mb-3">
+								<span class="text-success">落基山脉下的闲人</span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
+							</h6>
+							<div>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
+						<a href="profile.html">
+							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
+						</a>
+						<div class="media-body">
+							<h6 class="mt-0 mb-3">
+								<span class="text-success">落基山脉下的闲人</span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
+							</h6>
+							<div>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li class="media pb-3 pt-3 mb-3 border-bottom position-relative">
+						<span class="badge badge-danger">3</span>
+						<a href="profile.html">
+							<img src="http://images.nowcoder.com/head/8t.png" class="mr-4 rounded-circle user-header" alt="用户头像" >
+						</a>
+						<div class="media-body">
+							<h6 class="mt-0 mb-3">
+								<span class="text-success">落基山脉下的闲人</span>
+								<span class="float-right text-muted font-size-12">2019-04-28 14:13:25</span>
+							</h6>
+							<div>
+								<a href="letter-detail.html">米粉车, 你来吧!</a>
+								<ul class="d-inline font-size-12 float-right">
+									<li class="d-inline ml-2"><a href="#" class="text-primary">共5条会话</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>																																								
 				</ul>
 				<!-- 分页 -->
 				<nav class="mt-5">
@@ -230,7 +383,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-	<script src="../js/global.js"></script>
-	<script src="../js/profile.js"></script>
+	<script src="../../static/js/global.js"></script>
+	<script src="../../static/js/letter.js"></script>
 </body>
 </html>

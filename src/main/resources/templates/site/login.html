@@ -5,9 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-	<link rel="stylesheet" href="../css/global.css" />
-	<link rel="stylesheet" href="../css/login.css" />
-	<title>牛客网-注册</title>
+	<link rel="stylesheet" href="../../static/css/global.css" />
+	<link rel="stylesheet" href="../../static/css/login.css" />
+	<title>牛客网-登录</title>
 </head>
 <body>
 	<div class="nk-container">
@@ -62,48 +62,51 @@
 		<!-- 内容 -->
 		<div class="main">
 			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
-				<h3 class="text-center text-info border-bottom pb-3">注&nbsp;&nbsp;册</h3>
-				<form class="mt-5">
+				<h3 class="text-center text-info border-bottom pb-3">登&nbsp;&nbsp;录</h3>
+				<form class="mt-5">				
 					<div class="form-group row">
 						<label for="username" class="col-sm-2 col-form-label text-right">账号:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="username" placeholder="请输入您的账号!" required>
+							<input type="text" class="form-control is-invalid" id="username" placeholder="请输入您的账号!" required>
 							<div class="invalid-feedback">
-								该账号已存在!
+								该账号不存在!
 							</div>
 						</div>
 					</div>
 					<div class="form-group row mt-4">
 						<label for="password" class="col-sm-2 col-form-label text-right">密码:</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="password" placeholder="请输入您的密码!" required>
+							<input type="password" class="form-control is-invalid" id="password" placeholder="请输入您的密码!" required>
 							<div class="invalid-feedback">
 								密码长度不能小于8位!
 							</div>							
 						</div>
 					</div>
 					<div class="form-group row mt-4">
-						<label for="confirm-password" class="col-sm-2 col-form-label text-right">确认密码:</label>
-						<div class="col-sm-10">
-							<input type="password" class="form-control" id="confirm-password" placeholder="请再次输入密码!" required>
+						<label for="verifycode" class="col-sm-2 col-form-label text-right">验证码:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control is-invalid" id="verifycode" placeholder="请输入验证码!">
 							<div class="invalid-feedback">
-								两次输入的密码不一致!
+								验证码不正确!
 							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label for="email" class="col-sm-2 col-form-label text-right">邮箱:</label>
-						<div class="col-sm-10">
-							<input type="email" class="form-control" id="email" placeholder="请输入您的邮箱!" required>
-							<div class="invalid-feedback">
-								该邮箱已注册!
-							</div>
+						<div class="col-sm-4">
+							<img src="../../static/img/captcha.png" style="width:100px;height:40px;" class="mr-2"/>
+							<a href="javascript:;" class="font-size-12 align-bottom">刷新验证码</a>
 						</div>
-					</div>
+					</div>				
+					<div class="form-group row mt-4">
+						<div class="col-sm-2"></div>
+						<div class="col-sm-10">
+							<input type="checkbox" id="remember-me" checked="checked">
+							<label class="form-check-label" for="remember-me">记住我</label>
+							<a href="forget.html" class="text-danger float-right">忘记密码?</a>
+						</div>
+					</div>				
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-10 text-center">
-							<button type="submit" class="btn btn-info text-white form-control">立即注册</button>
+							<button type="submit" class="btn btn-info text-white form-control">立即登录</button>
 						</div>
 					</div>
 				</form>				
@@ -172,11 +175,9 @@
 			</div>
 		</footer>
 	</div>
-
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-	<script src="../js/global.js"></script>
-	<script src="../js/register.js"></script>
+	<script src="../../static/js/global.js"></script>
 </body>
 </html>

@@ -1,10 +1,13 @@
 package top.yumuing.community.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import top.yumuing.community.entity.DiscussPost;
 import top.yumuing.community.service.DiscussPostService;
 import top.yumuing.community.mapper.DiscussPostMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author yumuuing
@@ -14,7 +17,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class DiscussPostServiceImpl extends ServiceImpl<DiscussPostMapper, DiscussPost>
     implements DiscussPostService{
+    @Resource
+    public DiscussPostMapper discussPostMapper;
 
+    @Override
+    public List<DiscussPost> findDiscussPosts(int userId, int offset, int limit) {
+        return discussPostMapper.selectDiscussPosts(userId,offset,limit);
+    }
+
+    @Override
+    public int findDiscussPostsRows(int userId) {
+        return discussPostMapper.selectDiscussPostRows(userId);
+    }
 }
 
 

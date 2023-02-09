@@ -1,5 +1,7 @@
 package top.yumuing.community.mapper;
+import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.yumuing.community.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -9,8 +11,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2023-02-08 00:47:08
 * @Entity top.yumuing.community.entity.User
 */
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
-
+    User selectOneById(@Param("id") int id);
 }
 
 

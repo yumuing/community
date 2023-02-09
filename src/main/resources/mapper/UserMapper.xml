@@ -23,4 +23,10 @@
         status,activation_code,header_url,
         create_time
     </sql>
+    <select id="selectOneById" resultType="User">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id}
+    </select>
 </mapper>

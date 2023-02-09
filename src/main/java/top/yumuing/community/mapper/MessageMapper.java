@@ -1,5 +1,6 @@
 package top.yumuing.community.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import top.yumuing.community.entity.Message;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2023-02-08 00:47:08
 * @Entity top.yumuing.community.entity.Message
 */
+@Mapper
 public interface MessageMapper extends BaseMapper<Message> {
 
 }

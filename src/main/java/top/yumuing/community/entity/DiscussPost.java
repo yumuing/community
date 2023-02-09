@@ -16,50 +16,126 @@ import lombok.Data;
 @Data
 public class DiscussPost implements Serializable {
     /**
-     * 
+     * 帖子 ID
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 
+     * 用户 ID
      */
     private String userId;
 
     /**
-     * 
+     * 帖子标题
      */
     private String title;
 
     /**
-     * 
+     * 帖子内容
      */
     private String content;
 
     /**
-     * 0-普通; 1-置顶;
+     * 帖子类型 0-普通; 1-置顶;
      */
     private Integer type;
 
     /**
-     * 0-正常; 1-精华; 2-拉黑;
+     * 帖子状态 0-正常; 1-精华; 2-拉黑;
      */
     private Integer status;
 
     /**
-     * 
+     * 帖子创建日期
      */
     private Date createTime;
 
     /**
-     * 
+     * 评论数量
      */
     private Integer commentCount;
 
     /**
-     * 
+     * 帖子分数
      */
     private Double score;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
