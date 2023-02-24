@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import top.yumuing.community.entity.DiscussPost;
+import top.yumuing.community.entity.Page;
 import top.yumuing.community.entity.User;
 import top.yumuing.community.service.DiscussPostService;
 import top.yumuing.community.service.impl.DiscussPostServiceImpl;
@@ -27,14 +28,21 @@ public class HomeController {
     private UserServiceImpl userServiceImpl;
 
     @RequestMapping(path = "/index",method = RequestMethod.GET)
-    public String getIndecPage(Model model){
-        List<DiscussPost> discussPostList = discussPostServiceImpl.findDiscussPosts(0,0,0);
+    public String getIndecPage(Model model ,Page page){
+
+        //获取分页
+        page.setRows(discussPostServiceImpl.findDiscussPostsRows(0));
+        page.setPath("/index");
+
+        // 获取帖子
+        List<DiscussPost> discussPostList = discussPostServiceImpl.findDiscussPosts(0,page.getOffset(),page.getLimit());
         List<Map<String,Object>> discussPosts = new ArrayList<>();
         if (discussPostList != null){
             for(DiscussPost post: discussPostList){
                 Map<String, Object> map = new HashMap<>();
                 map.put("post",post);
-                User user = userServiceImpl.findUserById(Integer.getInteger(post.getUserId()));
+                System.out.println(post.getUserId());
+                User user = userServiceImpl.findUserById(Integer.parseInt(post.getUserId()));
                 map.put("user",user);
                 discussPosts.add(map);
             }
