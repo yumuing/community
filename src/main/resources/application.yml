@@ -33,3 +33,11 @@ mybatis-plus:
     use-generated-keys: true
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   type-aliases-package: top.yumuing.community.entity
+
+# Logger 配置：slf4j
+#logging:
+#  level.top.yumuing.community: info
+#  file:
+#    name: logs/community.log
+logging:
+  config: classpath:logback-spring.xml
