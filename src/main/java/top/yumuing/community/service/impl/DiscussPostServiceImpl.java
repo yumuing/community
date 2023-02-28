@@ -22,7 +22,6 @@ public class DiscussPostServiceImpl extends ServiceImpl<DiscussPostMapper, Discu
 
     @Override
     public List<DiscussPost> findDiscussPosts(int userId, int offset, int limit) {
-        System.out.println("看看参数："+userId+offset+limit);
         return discussPostMapper.selectDiscussPosts(userId,offset,limit);
     }
 

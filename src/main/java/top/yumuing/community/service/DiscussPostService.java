@@ -1,11 +1,9 @@
 package top.yumuing.community.service;
 
-import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.yumuing.community.entity.DiscussPost;
 import com.baomidou.mybatisplus.extension.service.IService;
-import top.yumuing.community.mapper.DiscussPostMapper;
+
 
 import java.util.List;
 

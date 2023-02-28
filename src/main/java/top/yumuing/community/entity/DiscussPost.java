@@ -61,6 +61,9 @@ public class DiscussPost implements Serializable {
      */
     private Double score;
 
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+
     public Integer getId() {
         return id;
     }
@@ -136,9 +139,6 @@ public class DiscussPost implements Serializable {
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 
     @Override
     public boolean equals(Object that) {

@@ -1,10 +1,8 @@
 package top.yumuing.community.service;
 
-import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import top.yumuing.community.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import top.yumuing.community.mapper.UserMapper;
 
 /**
 * @author yumuuing

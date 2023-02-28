@@ -1,7 +1,7 @@
 package top.yumuing.community.controller;
 
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +10,7 @@ import top.yumuing.community.entity.DiscussPost;
 import top.yumuing.community.entity.Page;
 import top.yumuing.community.entity.User;
 import top.yumuing.community.service.DiscussPostService;
-import top.yumuing.community.service.impl.DiscussPostServiceImpl;
-import top.yumuing.community.service.impl.UserServiceImpl;
-
-import java.nio.file.Path;
+import top.yumuing.community.service.UserService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,10 +19,12 @@ import java.util.Map;
 @Controller
 public class HomeController {
     @Autowired
-    private DiscussPostServiceImpl discussPostServiceImpl;
+    @Qualifier("discussPostServiceImpl")
+    private DiscussPostService discussPostServiceImpl;
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    @Qualifier("userServiceImpl")
+    private UserService userServiceImpl;
 
     @RequestMapping(path = "/index",method = RequestMethod.GET)
     public String getIndecPage(Model model ,Page page){
