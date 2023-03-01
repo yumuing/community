@@ -22,6 +22,21 @@ spring:
       maximum-pool-size: 15
       minimum-idle: 5
       idle-timeout: 30000
+  # 邮箱配置：mailProperties
+  mail:
+    host: smtp.qq.com
+    username: 1942588530@qq.com
+    # 授权码
+    password: wybqbwgfnfawddab
+    port: 465
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+            required: false
+          debug: true
 
 # mybatis-plus 配置
 
@@ -41,3 +56,5 @@ mybatis-plus:
 #    name: logs/community.log
 logging:
   config: classpath:logback-spring.xml
+
+
