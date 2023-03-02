@@ -29,4 +29,35 @@
         from user
         where id = #{id}
     </select>
+    <select id="selectOneByUsername" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where
+        username = #{username,jdbcType=VARCHAR}
+    </select>
+    <select id="selectOneByEmail" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where
+        email = #{email,jdbcType=VARCHAR}
+    </select>
+    <insert id="insertAll" parameterType="User" keyProperty="id">
+        insert into user
+        (id, username, password,
+         salt, email, type,
+         status, activation_code, header_url,
+         create_time)
+        values (#{id,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{salt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{type,jdbcType=NUMERIC},
+                #{status,jdbcType=NUMERIC}, #{activationCode,jdbcType=VARCHAR}, #{headerUrl,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP})
+
+    </insert>
+    <update id="updateStatusById">
+        update user
+        set status = #{status,jdbcType=NUMERIC}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 </mapper>

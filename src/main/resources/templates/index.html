@@ -11,7 +11,7 @@
 <body>
 <div class="nk-container">
     <!-- 头部 -->
-    <header class="bg-dark sticky-top">
+    <header class="bg-dark sticky-top" th:fragment="header">
         <div class="container">
             <!-- 导航 -->
             <nav class="navbar navbar-expand-lg navbar-dark">
@@ -19,13 +19,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" href="index.html">首页</a>
+                            <a class="nav-link" th:href="@{/index}">首页</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
                             <a class="nav-link position-relative" href="../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第一章素材和源码/源码/community-1.6/community/src/main/resources/templates/site/letter.html">消息<span class="badge badge-danger">12</span></a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" href="../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第一章素材和源码/源码/community-1.6/community/src/main/resources/templates/site/register.html">注册</a>
+                            <a class="nav-link" th:href="@{/register}">注册</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
                             <a class="nav-link" href="../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第一章素材和源码/源码/community-1.6/community/src/main/resources/templates/site/login.html">登录</a>

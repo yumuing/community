@@ -8,7 +8,7 @@ spring:
     encoding: utf-8
     mode: HTML5
     cache: false
-    prefix: classpath:/templates
+    prefix: classpath:/templates/
     servlet:
       content-type: text/html
   # mysql 配置
@@ -57,4 +57,7 @@ mybatis-plus:
 logging:
   config: classpath:logback-spring.xml
 
-
+# 自定义域名配置
+community:
+  domain:
+    path: http://localhost:8888
