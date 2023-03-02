@@ -108,6 +108,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     // 激活账户
+    public int activation(int userId, String code){
+        User user = userMapper.selectOneById(userId);
+        if (user == null){
+            return ACTIVATION_NULL;
+        } else if (user.getStatus()==1){
+            return ACTIVATION_REPEAT;
+        } else if (user.getActivationCode().equals(code)) {
+            userMapper.updateStatusById(1,userId);
+            return ACTIVATION_SUCCESS;
+        } else {
+          return ACTIVATION_FAILURE;
+        }
+
+    }
 
 }
 
