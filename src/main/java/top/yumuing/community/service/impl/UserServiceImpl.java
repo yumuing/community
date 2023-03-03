@@ -47,10 +47,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Override
     public Map<String, Object> register(User user){
-        System.out.println("进入register方法");
 
         Map<String, Object> map = new HashMap<>();
-        System.out.println(StringUtils.isBlank(user.getUsername()));
         //空值处理
         if (user == null){
             throw new IllegalArgumentException("参数不能为空");
