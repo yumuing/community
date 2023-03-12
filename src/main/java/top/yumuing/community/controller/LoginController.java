@@ -1,5 +1,10 @@
 package top.yumuing.community.controller;
 
+import com.google.code.kaptcha.Producer;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,14 +16,27 @@ import top.yumuing.community.entity.User;
 import top.yumuing.community.service.UserService;
 import top.yumuing.community.util.CommunityConstant;
 
+import javax.imageio.ImageIO;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 @Controller
 public class LoginController implements CommunityConstant {
 
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
     @Autowired
     @Qualifier("userServiceImpl")
     private UserService userServiceImpl;
+
+    @Autowired
+    private Producer imageCodeProducer;
+
+    @Autowired
+    private Producer kaptchaProducer;
 
 
     // 注册页面
@@ -69,4 +87,29 @@ public class LoginController implements CommunityConstant {
         }
         return "/site/operate-result";
     }
+
+    //验证码
+    @RequestMapping(path = "/imageCode",method = RequestMethod.GET)
+    public void getImgCode(HttpServletResponse response, HttpSession session){
+        String codeText = imageCodeProducer.createText();
+        BufferedImage imageCode = imageCodeProducer.createImage(codeText);
+
+        // 将验证码文本存入 session
+        session.setAttribute("imageCode", codeText);
+
+        //设置返回类型
+        response.setContentType("image/jpeg");
+
+        try {
+            OutputStream os = response.getOutputStream();
+            ImageIO.write(imageCode, "jpeg", os);
+        } catch (IOException e) {
+            logger.error("响应验证码失败！"+e.getMessage());
+        }
+
+
+    }
+
+
+
 }

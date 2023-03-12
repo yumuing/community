@@ -16,18 +16,18 @@ import lombok.Data;
 @Data
 public class LoginTicket implements Serializable {
     /**
-     * 
+     * 主键
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 
+     * 用户ID
      */
     private Integer userId;
 
     /**
-     * 
+     * 登陆凭证
      */
     private String ticket;
 
@@ -37,12 +37,56 @@ public class LoginTicket implements Serializable {
     private Integer status;
 
     /**
-     * 
+     * 到期时间
      */
     private Date expired;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getExpired() {
+        return expired;
+    }
+
+    public void setExpired(Date expired) {
+        this.expired = expired;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     @Override
     public boolean equals(Object that) {

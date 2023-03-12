@@ -19,6 +19,7 @@
         <junit-version>4.12</junit-version>
         <mybatis-plus-version>3.5.3</mybatis-plus-version>
         <commons-lang-version>3.12.0</commons-lang-version>
+        <kaptcha-version>2.3.2</kaptcha-version>
     </properties>
 
     <dependencies>
@@ -78,6 +79,12 @@
             <version>${commons-lang-version}</version>
         </dependency>
 
+        <!-- 验证码包 -->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha-version}</version>
+        </dependency>
 
     </dependencies>
 
