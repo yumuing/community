@@ -11,6 +11,7 @@ import java.util.Properties;
 @Configuration
 public class KaptchaConfig {
 
+    //声明第三方bean
     @Bean
     public Producer kaptchaProduce(){
         Properties properties=new Properties();
@@ -28,12 +29,12 @@ public class KaptchaConfig {
         properties.setProperty("kaptcha.textproducer.char.length","4");
         //图片的干扰样式：默认存在无规则划线干扰
         //无干扰：com.google.code.kaptcha.impl.NoNoise
-//        properties.setProperty("kaptcha.noise.impl","com.google.code.kaptcha.impl.NoNoise");
+        properties.setProperty("kaptcha.noise.impl","com.google.code.kaptcha.impl.NoNoise");
         //图片干扰颜色：默认为黑色
         properties.setProperty("kaptcha.noise.color", "black");
         //图片渲染效果：默认水纹
         // 水纹com.google.code.kaptcha.impl.WaterRipple 鱼眼com.google.code.kaptcha.impl.FishEyeGimpy 阴影com.google.code.kaptcha.impl.ShadowGimpy
-        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.ShadowGimpy");
+//        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.ShadowGimpy");
 
         DefaultKaptcha Kaptcha = new DefaultKaptcha();
         Config config=new Config(properties);

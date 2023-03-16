@@ -56,6 +56,10 @@ mybatis-plus:
 #    name: logs/community.log
 logging:
   config: classpath:logback-spring.xml
+  level:
+    top:
+      yumuing:
+        community: error
 
 # 自定义域名配置
 community:

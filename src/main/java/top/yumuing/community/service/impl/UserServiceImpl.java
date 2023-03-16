@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import top.yumuing.community.entity.LoginTicket;
 import top.yumuing.community.entity.User;
+import top.yumuing.community.mapper.LoginTicketMapper;
 import top.yumuing.community.service.UserService;
 import top.yumuing.community.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Autowired
     private TemplateEngine templateEngine;
+
+    @Resource
+    private LoginTicketMapper loginTicketMapper;
 
     @Value("${community.domain.path}")
     private String domain;
@@ -120,6 +125,67 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
 
     }
+
+    //登录
+    @Override
+    public Map<String, Object> login(String username, String password, int expiredSeconds){
+        Map<String, Object> map = new HashMap<>();
+
+        //空值处理
+        if(StringUtils.isBlank(username)){
+            map.put("usernameMsg", "账号不能为空！");
+            return map;
+        }
+        if (StringUtils.isBlank(password)){
+            map.put("passwordMsg", "密码不能为空！");
+            return map;
+        }
+
+        //验证账号
+        User user = userMapper.selectOneByUsername(username);
+        if (user == null){
+            map.put("usernameMsg","该账号不存在");
+            return map;
+        }
+
+        //验证状态
+        if (user.getStatus() == 0){
+            map.put("usernameMsg","该账号未激活！");
+            return map;
+        }
+
+
+        //验证密码
+        password = CommunityUtil.md5(password+user.getSalt());
+        if(!user.getPassword().equals(password)){
+            map.put("passwordMsg","密码不正确！");
+            return map;
+        }
+
+        //生成登录凭证
+        LoginTicket loginTicket = new LoginTicket();
+        loginTicket.setUserId(user.getId());
+        loginTicket.setTicket(CommunityUtil.generateUUID());
+        loginTicket.setStatus(1);
+        loginTicket.setExpired(new Date(System.currentTimeMillis() + expiredSeconds * 10000));
+        loginTicketMapper.insertAll(loginTicket);
+        map.put("loginTicket",loginTicket.getTicket());
+        return map;
+    }
+
+    //退出登录
+    @Override
+    public void logout(String loginTicket) {
+        loginTicketMapper.updateStatusByTicket(0,loginTicket);
+    }
+
+
+    //获取登录凭证
+    @Override
+    public LoginTicket getLoginTicket(String loginTicket) {
+        return loginTicketMapper.selectOneByTicket(loginTicket);
+    }
+
 
 }
 

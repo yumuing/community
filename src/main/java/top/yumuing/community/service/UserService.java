@@ -1,6 +1,7 @@
 package top.yumuing.community.service;
 
 import org.springframework.stereotype.Service;
+import top.yumuing.community.entity.LoginTicket;
 import top.yumuing.community.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import top.yumuing.community.util.CommunityConstant;
@@ -20,4 +21,10 @@ public interface UserService extends IService<User>, CommunityConstant {
     public Map<String, Object> register(User user);
 
     public int activation(int userId, String code);
+
+    public Map<String, Object> login(String username, String password, int expiredSeconds);
+
+    public void logout(String loginTicket);
+
+    public LoginTicket getLoginTicket(String ticket);
 }

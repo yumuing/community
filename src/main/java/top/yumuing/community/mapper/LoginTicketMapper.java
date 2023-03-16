@@ -1,4 +1,5 @@
 package top.yumuing.community.mapper;
+import org.apache.ibatis.annotations.Param;
 
 import org.apache.ibatis.annotations.Mapper;
 import top.yumuing.community.entity.LoginTicket;
@@ -12,7 +13,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 @Mapper
 public interface LoginTicketMapper extends BaseMapper<LoginTicket> {
+    int insertAll(LoginTicket loginTicket);
 
+    LoginTicket selectOneByTicket(@Param("ticket") String ticket);
+
+    int updateStatusByTicket(@Param("status") Integer status, @Param("ticket") String ticket);
 }
 
 

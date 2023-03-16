@@ -16,4 +16,24 @@
         id,user_id,ticket,
         status,expired
     </sql>
+    <insert id="insertAll" parameterType="LoginTicket" keyProperty="id">
+        insert into login_ticket
+        (id, user_id, ticket,
+         status, expired)
+        values (#{id,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{ticket,jdbcType=VARCHAR},
+                #{status,jdbcType=NUMERIC}, #{expired,jdbcType=TIMESTAMP})
+
+    </insert>
+    <select id="selectOneByTicket" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from login_ticket
+        where
+        ticket = #{ticket,jdbcType=VARCHAR}
+    </select>
+    <update id="updateStatusByTicket">
+        update login_ticket
+        set status = #{status,jdbcType=NUMERIC}
+        where ticket = #{ticket,jdbcType=VARCHAR}
+    </update>
 </mapper>

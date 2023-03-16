@@ -25,13 +25,13 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item ml-3 btn-group-vertical">
-								<a class="nav-link" href="../index.html">首页</a>
+								<a class="nav-link" href="../../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第二章素材和源码/源码/community-2.5/community/src/main/resources/templates/index.html">首页</a>
 							</li>
 							<li class="nav-item ml-3 btn-group-vertical">
-								<a class="nav-link position-relative" href="letter.html">消息<span class="badge badge-danger">12</span></a>
+								<a class="nav-link position-relative" href="../../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第二章素材和源码/源码/community-2.5/community/src/main/resources/templates/site/letter.html">消息<span class="badge badge-danger">12</span></a>
 							</li>
 							<li class="nav-item ml-3 btn-group-vertical">
-								<a class="nav-link" href="register.html">注册</a>
+								<a class="nav-link" href="../../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第二章素材和源码/源码/community-2.5/community/src/main/resources/templates/site/register.html">注册</a>
 							</li>
 							<li class="nav-item ml-3 btn-group-vertical">
 								<a class="nav-link" href="login.html">登录</a>
@@ -41,8 +41,8 @@
 									<img src="http://images.nowcoder.com/head/1t.png" class="rounded-circle" style="width:30px;"/>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item text-center" href="profile.html">个人主页</a>
-									<a class="dropdown-item text-center" href="setting.html">账号设置</a>
+									<a class="dropdown-item text-center" href="../../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第二章素材和源码/源码/community-2.5/community/src/main/resources/templates/site/profile.html">个人主页</a>
+									<a class="dropdown-item text-center" href="../../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第二章素材和源码/源码/community-2.5/community/src/main/resources/templates/site/setting.html">账号设置</a>
 									<a class="dropdown-item text-center" href="login.html">退出登录</a>
 									<div class="dropdown-divider"></div>
 									<span class="dropdown-item text-center text-secondary">nowcoder</span>
@@ -50,7 +50,7 @@
 							</li>
 						</ul>
 						<!-- 搜索 -->
-						<form class="form-inline my-2 my-lg-0" action="search.html">
+						<form class="form-inline my-2 my-lg-0" action="../../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第二章素材和源码/源码/community-2.5/community/src/main/resources/templates/site/search.html">
 							<input class="form-control mr-sm-2" type="search" aria-label="Search" />
 							<button class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
 						</form>
@@ -63,12 +63,14 @@
 		<div class="main">
 			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
 				<h3 class="text-center text-info border-bottom pb-3">登&nbsp;&nbsp;录</h3>
-				<form class="mt-5">				
+				<form class="mt-5" method="post" th:action="@{/login}">
 					<div class="form-group row">
 						<label for="username" class="col-sm-2 col-form-label text-right">账号:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control is-invalid" id="username" placeholder="请输入您的账号!" required>
-							<div class="invalid-feedback">
+							<input type="text" th:class="|form-control ${usernameMsg!=null?'is-invalid':''}|"
+								   th:value="${param.username}"
+								   id="username" name="username" placeholder="请输入您的账号!" required>
+							<div class="invalid-feedback" th:text="${usernameMsg}">
 								该账号不存在!
 							</div>
 						</div>
@@ -76,8 +78,10 @@
 					<div class="form-group row mt-4">
 						<label for="password" class="col-sm-2 col-form-label text-right">密码:</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control is-invalid" id="password" placeholder="请输入您的密码!" required>
-							<div class="invalid-feedback">
+							<input type="password" th:class="|form-control ${passwordMsg!=null?'is-invalid':''}|"
+								   th:value="${param.password}"
+								   id="password" name="password" placeholder="请输入您的密码!" required>
+							<div class="invalid-feedback" th:text="${passwordMsg}">
 								密码长度不能小于8位!
 							</div>							
 						</div>
@@ -85,22 +89,24 @@
 					<div class="form-group row mt-4">
 						<label for="verifycode" class="col-sm-2 col-form-label text-right">验证码:</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control is-invalid" id="verifycode" placeholder="请输入验证码!">
-							<div class="invalid-feedback">
+							<input type="text" th:class="|form-control ${codeMsg!=null?'is-invalid':''}|"
+								   id="verifycode" name="code" placeholder="请输入验证码!">
+							<div class="invalid-feedback" th:text="${codeMsg}">
 								验证码不正确!
 							</div>
 						</div>
 						<div class="col-sm-4">
-							<img src="../../static/img/captcha.png" style="width:100px;height:40px;" class="mr-2"/>
-							<a href="javascript:;" class="font-size-12 align-bottom">刷新验证码</a>
+							<img th:src="@{/imageCode}" id="imageCode" style="width:100px;height:40px;" class="mr-2"/>
+							<a href="javascript:refresh_imageCode();" class="font-size-12 align-bottom">刷新验证码</a>
 						</div>
 					</div>				
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-10">
-							<input type="checkbox" id="remember-me" checked="checked">
+							<input type="checkbox" id="remember-me" name="rememberMe"
+								   th:checked="${param.rememberMe}">
 							<label class="form-check-label" for="remember-me">记住我</label>
-							<a href="forget.html" class="text-danger float-right">忘记密码?</a>
+							<a href="../../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第二章素材和源码/源码/community-2.5/community/src/main/resources/templates/site/forget.html" class="text-danger float-right">忘记密码?</a>
 						</div>
 					</div>				
 					<div class="form-group row mt-4">
@@ -179,5 +185,11 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 	<script th:src="@{/js/global.js}"></script>
+	<script>
+		function refresh_imageCode() {
+			var path = "/imageCode?p=" + Math.random();
+			$("#imageCode").attr("src", path);
+		}
+	</script>
 </body>
 </html>

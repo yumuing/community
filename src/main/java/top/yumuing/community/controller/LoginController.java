@@ -1,14 +1,18 @@
 package top.yumuing.community.controller;
 
 import com.google.code.kaptcha.Producer;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,9 +38,6 @@ public class LoginController implements CommunityConstant {
 
     @Autowired
     private Producer imageCodeProducer;
-
-    @Autowired
-    private Producer kaptchaProducer;
 
 
     // 注册页面
@@ -106,10 +107,42 @@ public class LoginController implements CommunityConstant {
         } catch (IOException e) {
             logger.error("响应验证码失败！"+e.getMessage());
         }
-
-
     }
 
+    //登录
+    @RequestMapping(path = "/login",method = RequestMethod.POST)
+    public String login(String username, String password, String code,
+                        boolean rememberMe, Model model, HttpSession session, HttpServletResponse response){
+        String imageCode = (String) session.getAttribute("imageCode");
+        // 验证码
+        if (StringUtils.isBlank(imageCode) || StringUtils.isBlank(code) || !imageCode.equalsIgnoreCase(code)){
+            model.addAttribute("codeMsg","验证码不正确！");
+            return "/site/login";
+        }
 
+        // 是否记住我
+        int expiredSeconds = rememberMe ? REMEMBER_EXPIRED_SECONDS : DEFAULT_EXPIRED_SECONDS;
 
+        // 检测账号密码
+        Map<String,Object> map = userServiceImpl.login(username,password,expiredSeconds);
+        if (map.containsKey("loginTicket")){
+            //设置cookie
+            Cookie cookie = new Cookie("loginTicket",map.get("loginTicket").toString());
+            cookie.setPath("/");
+            cookie.setMaxAge(expiredSeconds);
+            response.addCookie(cookie);
+            return "redirect:/index";
+        }else {
+            model.addAttribute("usernameMsg",map.get("usernameMsg"));
+            model.addAttribute("passwordMsg",map.get("passwordMsg"));
+            return "/site/login";
+        }
+    }
+
+    // 退出登录
+    @RequestMapping(path = "/logout",method = RequestMethod.GET)
+    public String logout(@CookieValue("loginTicket") String loginTicket){
+        userServiceImpl.logout(loginTicket);
+        return "redirect:/login";
+    }
 }
