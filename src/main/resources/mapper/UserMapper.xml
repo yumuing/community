@@ -60,4 +60,19 @@
         set status = #{status,jdbcType=NUMERIC}
         where id = #{id,jdbcType=NUMERIC}
     </update>
+    <update id="updateHeaderUrlById">
+        update user
+        set header_url = #{headerUrl,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+    <update id="updatePasswordById">
+        update user
+        set password = #{password,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+    <update id="updateSaltById">
+        update user
+        set salt = #{salt,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 </mapper>

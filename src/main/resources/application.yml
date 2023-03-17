@@ -63,5 +63,8 @@ logging:
 
 # 自定义域名配置
 community:
+  upload:
+    path: C:\code\date\upload
   domain:
     path: http://localhost:8888
+

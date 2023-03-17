@@ -22,6 +22,12 @@ public interface UserMapper extends BaseMapper<User> {
     int insertAll(User user);
 
     int updateStatusById(@Param("status") Integer status, @Param("id") Integer id);
+
+    int updateHeaderUrlById(@Param("headerUrl") String headerUrl, @Param("id") Integer id);
+
+    int updatePasswordById(@Param("password") String password, @Param("id") Integer id);
+
+    int updateSaltById(@Param("salt") String salt, @Param("id") Integer id);
 }
 
 

@@ -27,4 +27,10 @@ public interface UserService extends IService<User>, CommunityConstant {
     public void logout(String loginTicket);
 
     public LoginTicket getLoginTicket(String ticket);
+
+    public int updateHeaderUrl(int userId,String headerUrl);
+
+    public int updatePassword(int userId, String password);
+
+    public int updateSalt(int userId, String salt);
 }

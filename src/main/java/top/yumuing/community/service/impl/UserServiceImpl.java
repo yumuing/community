@@ -68,6 +68,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             return map;
         }
 
+        if (user.getPassword().length() <= 8){
+            map.put("passwordMsg", "密码长度不能小于8位!");
+            return map;
+        }
+
         if (StringUtils.isBlank(user.getEmail())){
             map.put("emailMsg", "邮箱不能为空");
             return map;
@@ -184,6 +189,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public LoginTicket getLoginTicket(String loginTicket) {
         return loginTicketMapper.selectOneByTicket(loginTicket);
+    }
+
+
+    //更新头像路径
+    @Override
+    public int updateHeaderUrl(int userId, String headerUrl) {
+        return userMapper.updateHeaderUrlById(headerUrl,userId);
+    }
+
+    //更新密码
+    @Override
+    public int updatePassword(int userId, String password) {
+        return userMapper.updatePasswordById(password,userId);
+    }
+
+    // 更新盐值
+    @Override
+    public int updateSalt(int userId, String salt) {
+        return userMapper.updateSaltById(salt,userId);
     }
 
 
