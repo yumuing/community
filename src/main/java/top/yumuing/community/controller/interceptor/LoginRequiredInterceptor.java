@@ -11,6 +11,7 @@ import top.yumuing.community.util.HostHolder;
 
 import java.lang.reflect.Method;
 
+// 检查登录状态请求
 @Component
 public class LoginRequiredInterceptor implements HandlerInterceptor {
 
@@ -21,9 +22,12 @@ public class LoginRequiredInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (handler instanceof HandlerMethod){
             HandlerMethod handlerMethod = (HandlerMethod) handler;
+            // 获取请求方法
             Method method = handlerMethod.getMethod();
+            // 检查请求方法上是否存在 @LoginRequired 注解
             LoginRequired loginRequired = method.getAnnotation(LoginRequired.class);
             if (loginRequired != null && hostHolder.getUser() == null){
+                // 存在注解说明需要进行检查，检查登录状态为未登录，故重定向到登录请求。
                 response.sendRedirect(request.getContextPath() + "/login");
                 return false;
             }

@@ -16,6 +16,7 @@ import top.yumuing.community.util.HostHolder;
 
 import java.util.Date;
 
+// 让请求持有用户
 @Component
 public class LoginTicketInterceptor implements HandlerInterceptor {
 

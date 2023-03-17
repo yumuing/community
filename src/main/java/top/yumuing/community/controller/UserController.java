@@ -43,6 +43,7 @@ public class UserController {
     @Autowired
     private HostHolder hostHolder;
 
+    //返回账号设置页面
     @LoginRequired
     @RequestMapping(path = "/setting",method = RequestMethod.GET)
     public String getSettingPage(){

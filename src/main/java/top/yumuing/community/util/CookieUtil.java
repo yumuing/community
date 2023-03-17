@@ -3,6 +3,7 @@ package top.yumuing.community.util;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 
+// 查询 cookie 中指定的信息
 public class CookieUtil {
     public static String getValue(HttpServletRequest request, String cookieName){
         if (request == null || cookieName == null){
