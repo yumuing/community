@@ -43,7 +43,6 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
                 hostHolder.setUser(user);
             }
         }
-
         return true;
     }
 

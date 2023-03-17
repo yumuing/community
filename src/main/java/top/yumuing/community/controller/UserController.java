@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import top.yumuing.community.annotation.LoginRequired;
 import top.yumuing.community.entity.User;
 import top.yumuing.community.service.UserService;
 import top.yumuing.community.util.CommunityUtil;
@@ -42,11 +43,13 @@ public class UserController {
     @Autowired
     private HostHolder hostHolder;
 
+    @LoginRequired
     @RequestMapping(path = "/setting",method = RequestMethod.GET)
     public String getSettingPage(){
         return "/site/setting";
     }
 
+    @LoginRequired
     @RequestMapping(path = "/upload",method = RequestMethod.POST)
     public String uploadHeader(MultipartFile headerImage, Model model){
         if (headerImage == null){
@@ -106,6 +109,7 @@ public class UserController {
     }
 
     // 修改密码
+    @LoginRequired
     @RequestMapping(path = "/updatePassword", method = RequestMethod.POST)
     public String updatePassword(Model model, String newPassword, String oldPassword, String confirmPassword){
         if (!newPassword.equals(confirmPassword)){
