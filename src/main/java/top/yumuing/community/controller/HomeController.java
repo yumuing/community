@@ -40,7 +40,6 @@ public class HomeController {
             for(DiscussPost post: discussPostList){
                 Map<String, Object> map = new HashMap<>();
                 map.put("post",post);
-                System.out.println(post.getUserId());
                 User user = userServiceImpl.findUserById(Integer.parseInt(post.getUserId()));
                 map.put("user",user);
                 discussPosts.add(map);

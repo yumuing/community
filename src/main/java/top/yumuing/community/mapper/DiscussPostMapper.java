@@ -28,6 +28,12 @@ public interface DiscussPostMapper extends BaseMapper<DiscussPost> {
     // 需要动态拼接 SQL 语句时，传入的参数有且只有一个，参数之前必须增加 @Param("参数别名")，否则会报错。
     int selectDiscussPostRows(@Param("userId") int userId);
 
+    // 发布帖子时，插入数据
+    int insertAll(DiscussPost discussPost);
+
+    // 查询帖子详情
+    DiscussPost selectOneById(@Param("id") Integer id);
+
 }
 
 

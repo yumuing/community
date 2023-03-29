@@ -41,5 +41,22 @@
             and user_id = #{userId}
         </if>
     </select>
+    <insert id="insertAll" parameterType="DiscussPost">
+        insert into discuss_post
+        (id, user_id, title,
+         content, type, status,
+         create_time, comment_count, score)
+        values (#{id,jdbcType=NUMERIC}, #{userId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+                #{content,jdbcType=VARCHAR}, #{type,jdbcType=NUMERIC}, #{status,jdbcType=NUMERIC},
+                #{createTime,jdbcType=TIMESTAMP}, #{commentCount,jdbcType=NUMERIC}, #{score,jdbcType=DECIMAL})
+
+    </insert>
+    <select id="selectOneById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from discuss_post
+        where
+        id = #{id,jdbcType=NUMERIC}
+    </select>
 
 </mapper>

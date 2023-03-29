@@ -38,6 +38,13 @@ spring:
             required: false
           debug: true
 
+  # kafka 系统通知
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: community-consumer-group
+      enable-auto-commit: true
+      auto-commit-interval: 3000
 # mybatis-plus 配置
 
 mybatis-plus:
@@ -67,4 +74,5 @@ community:
     path: C:\code\date\upload
   domain:
     path: http://localhost:8888
+
 

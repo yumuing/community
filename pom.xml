@@ -22,6 +22,7 @@
         <kaptcha-version>2.3.2</kaptcha-version>
         <sensitive-word-version>0.2.1</sensitive-word-version>
         <jackson-version>2.14.2</jackson-version>
+<!--        <kafka-version>3.0.5</kafka-version>-->
     </properties>
 
     <dependencies>
@@ -100,6 +101,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-version}</version>
+        </dependency>
+
+        <!-- kafka 包 系统通知 -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
 
     </dependencies>
