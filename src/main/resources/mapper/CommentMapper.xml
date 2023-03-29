@@ -20,4 +20,23 @@
         entity_id,target_id,content,
         status,create_time
     </sql>
+
+    <select id="selectCommentsByEntity" resultType="Comment">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where statues = 0
+        AND entity_type = #{entityType,jdbcType=NUMERIC}
+        AND entity_id = #{entityId,jdbcType=NUMERIC}
+        order by create_time asc,
+        limit #{offset}, #{limit}
+    </select>
+    <select id="countByEntityIdAndEntityType" resultType="int">
+        select count(*)
+        from comment
+        where statues = 0
+          AND entity_id = #{entityId,jdbcType=NUMERIC}
+          AND entity_type = #{entityType,jdbcType=NUMERIC}
+    </select>
+
 </mapper>

@@ -1,8 +1,11 @@
 package top.yumuing.community.mapper;
+import org.apache.ibatis.annotations.Param;
 
 import org.apache.ibatis.annotations.Mapper;
 import top.yumuing.community.entity.Comment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author yumuuing
@@ -12,6 +15,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 @Mapper
 public interface CommentMapper extends BaseMapper<Comment> {
+
+    // 分页
+    List<Comment> selectCommentsByEntity(int entityType, int entityId, int offset, int limit);
+
+    int countByEntityIdAndEntityType(@Param("entityId") Integer entityId, @Param("entityType") Integer entityType);
 
 }
 

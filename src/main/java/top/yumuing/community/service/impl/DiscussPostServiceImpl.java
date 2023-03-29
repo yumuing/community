@@ -3,8 +3,10 @@ package top.yumuing.community.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.util.HtmlUtils;
 import top.yumuing.community.entity.DiscussPost;
+import top.yumuing.community.service.CommentService;
 import top.yumuing.community.service.DiscussPostService;
 import top.yumuing.community.mapper.DiscussPostMapper;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class DiscussPostServiceImpl extends ServiceImpl<DiscussPostMapper, Discu
 
     @Autowired
     private SensitiveWordUtil sensitiveWordUtil;
+
+
 
     @Override
     public List<DiscussPost> findDiscussPosts(int userId, int offset, int limit) {
