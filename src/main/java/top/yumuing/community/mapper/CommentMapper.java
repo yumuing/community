@@ -21,6 +21,8 @@ public interface CommentMapper extends BaseMapper<Comment> {
 
     int countByEntityIdAndEntityType(@Param("entityId") Integer entityId, @Param("entityType") Integer entityType);
 
+    // 增加评论
+    int insertComment(Comment comment);
 }
 
 
