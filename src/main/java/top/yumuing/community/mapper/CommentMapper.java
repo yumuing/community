@@ -19,6 +19,7 @@ public interface CommentMapper extends BaseMapper<Comment> {
     // 分页
     List<Comment> selectCommentsByEntity(int entityType, int entityId, int offset, int limit);
 
+    // 查询帖子总数
     int countByEntityIdAndEntityType(@Param("entityId") Integer entityId, @Param("entityType") Integer entityType);
 
     // 增加评论

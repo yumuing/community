@@ -62,6 +62,11 @@ public class DiscussPostServiceImpl extends ServiceImpl<DiscussPostMapper, Discu
     public DiscussPost findDiscussPostById(int id) {
         return discussPostMapper.selectOneById(id);
     }
+
+    @Override
+    public int updateCommentCount(int id, int commentCount) {
+        return discussPostMapper.updateCommentCountById(commentCount,id);
+    }
 }
 
 

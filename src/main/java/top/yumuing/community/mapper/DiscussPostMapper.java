@@ -34,6 +34,8 @@ public interface DiscussPostMapper extends BaseMapper<DiscussPost> {
     // 查询帖子详情
     DiscussPost selectOneById(@Param("id") Integer id);
 
+    // 更新评论数量
+    int updateCommentCountById(@Param("commentCount") Integer commentCount, @Param("id") Integer id);
 }
 
 

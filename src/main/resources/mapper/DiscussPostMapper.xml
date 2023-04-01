@@ -58,5 +58,10 @@
         where
         id = #{id,jdbcType=NUMERIC}
     </select>
+    <update id="updateCommentCountById">
+        update discuss_post
+        set comment_count = #{commentCount,jdbcType=NUMERIC}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 
 </mapper>
