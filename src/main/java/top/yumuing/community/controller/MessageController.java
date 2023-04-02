@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import top.yumuing.community.annotation.LoginRequired;
@@ -24,7 +25,7 @@ import java.util.Map;
  */
 
 @Controller
-
+@RequestMapping("/letter")
 public class MessageController {
 
     @Autowired
@@ -44,7 +45,7 @@ public class MessageController {
      * 会话：当前用户与多个用户的私信列表
      */
     @LoginRequired
-    @RequestMapping(path = "/letter/list",method = RequestMethod.GET)
+    @RequestMapping(path = "/list",method = RequestMethod.GET)
     public String getLetterList(Model model, Page page){
         User user = hostHolder.getUser();
         // 分页信息
@@ -82,5 +83,47 @@ public class MessageController {
 
         return "/site/letter";
 
+    }
+
+    @RequestMapping(path = "/detail/{conversationId}",method = RequestMethod.GET)
+    public String getLetterDetail(@PathVariable("conversationId") String conversationId, Page page,Model model){
+        // 分页信息
+        page.setLimit(5);
+        page.setPath("/letter/detail/" + conversationId);
+        page.setRows(messageServiceImpl.findLetterCount(conversationId));
+
+        // 私信详情列表
+        List<Message> letterList = messageServiceImpl.findLetters(conversationId,page.getOffset(),page.getLimit());
+        List<Map<String,Object>> letters = new ArrayList<>();
+
+        if (letterList != null){
+            for(Message message: letterList){
+                Map<String,Object> map = new HashMap<>();
+                map.put("letter",message);
+                map.put("fromUser",userServiceImpl.findUserById(message.getFromId()));
+                letters.add(map);
+            }
+        }
+
+        model.addAttribute("letters",letters);
+
+        // 查询私信目标
+        model.addAttribute("target",getLetterTarget(conversationId));
+
+        return "/site/letter-detail";
+    }
+
+
+    // 查询私信目标
+    private User getLetterTarget(String conversationId){
+        String[] ids = conversationId.split("_");
+        int id1 = Integer.parseInt(ids[0]);
+        int id2 = Integer.parseInt(ids[1]);
+
+        if (hostHolder.getUser().getId() == id1){
+            return userServiceImpl.findUserById(id2);
+        }else {
+            return userServiceImpl.findUserById(id1);
+        }
     }
 }
