@@ -20,4 +20,8 @@ public interface MessageService extends IService<Message> {
     public int findLetterCount(String conversationId);
 
     public  int findLetterUnreadCount(int userId, String conversationId);
+
+    public int addMessage(Message message);
+
+    public int readMessage(List<Integer> idList);
 }

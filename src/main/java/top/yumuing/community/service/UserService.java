@@ -33,4 +33,6 @@ public interface UserService extends IService<User>, CommunityConstant {
     public int updatePassword(int userId, String password);
 
     public int updateSalt(int userId, String salt);
+
+    public User findUserByName(String username);
 }

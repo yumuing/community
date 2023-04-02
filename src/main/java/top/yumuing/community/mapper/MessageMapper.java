@@ -44,6 +44,17 @@ public interface MessageMapper extends BaseMapper<Message> {
 
     int selectLetterUnreadCount(int userId, String conversationId);
 
+
+    /**
+     * 增加私信
+     */
+    int insertAll(Message message);
+
+    /**
+     * 更新私信未读状态或删除消息
+     */
+    int updateStatusByIds(List<Integer> idList, int status);
+
 }
 
 

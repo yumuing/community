@@ -74,4 +74,23 @@
             and conversation_id = #{conversationId}
         </if>
     </select>
+    <insert id="insertAll" keyProperty="id">
+        insert into message
+        (id, from_id, to_id,
+         conversation_id, content, status,
+         create_time)
+        values (#{id,jdbcType=NUMERIC}, #{fromId,jdbcType=NUMERIC}, #{toId,jdbcType=NUMERIC},
+                #{conversationId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{status,jdbcType=NUMERIC},
+                #{createTime,jdbcType=TIMESTAMP})
+
+    </insert>
+
+    <update id="updateStatusByIds" >
+        update message
+        set status = #{status}
+        where id in
+        <foreach collection="idList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
 </mapper>

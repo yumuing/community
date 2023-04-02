@@ -116,6 +116,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     // 激活账户
+    @Override
     public int activation(int userId, String code){
         User user = userMapper.selectOneById(userId);
         if (user == null){
@@ -208,6 +209,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public int updateSalt(int userId, String salt) {
         return userMapper.updateSaltById(salt,userId);
+    }
+
+    @Override
+    public User findUserByName(String username) {
+        return userMapper.selectOneByUsername(username);
     }
 
 
