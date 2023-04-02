@@ -19,6 +19,10 @@ import top.yumuing.community.util.HostHolder;
 
 import java.util.*;
 
+
+/**
+ * @author yumuing
+ */
 @Controller
 @RequestMapping("/discuss")
 public class DiscussPostController implements CommunityConstant{

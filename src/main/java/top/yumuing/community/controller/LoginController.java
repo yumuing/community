@@ -27,6 +27,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
+
+/**
+ * @author yumuing
+ */
 @Controller
 public class LoginController implements CommunityConstant {
 

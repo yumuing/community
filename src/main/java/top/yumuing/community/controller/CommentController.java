@@ -13,6 +13,9 @@ import top.yumuing.community.util.HostHolder;
 
 import java.util.Date;
 
+/**
+ * @author yumuing
+ */
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
@@ -24,7 +27,9 @@ public class CommentController {
     @Autowired
     private HostHolder hostHolder;
 
-    // 增加评论
+    /**
+     * 增加评论
+     */
     @LoginRequired
     @RequestMapping(path = "/add/{discussPostId}",method = RequestMethod.POST)
     public String addComment(@PathVariable("discussPostId") int discussPostId, Comment comment){
