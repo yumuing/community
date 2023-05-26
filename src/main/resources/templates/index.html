@@ -1,228 +1,312 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- saved from url=(0029)#signin -->
+<html lang="zh-CN" dropeffect="none"
+      class="js is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile"
+      style="" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/global.css}">
-    <title>牛客网-首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-ZA-Response-Id" content="46acde5c53db46f2806ccad726de9826">
+    <title>首页 - 知乎</title>
+    <meta name="apple-itunes-app" content="app-id=432274380">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="mobile-agent" content="format=html5">
+    <meta id="znonce" name="znonce" content="d3edc464cf014708819feffde7ddd01e">
+    <link rel="search" type="application/opensearchdescription+xml" href="" title="">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
+    <style>
+        .zm-item-answer-author-info a.collapse {
+            margin-top: 0
+        }
+    </style>
+
 </head>
-<body>
-<div class="nk-container">
-    <!-- 头部 -->
-    <header class="bg-dark sticky-top" th:fragment="header">
-        <div class="container">
-            <!-- 导航 -->
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <!-- 功能 -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" th:href="@{/index}">首页</a>
-                        </li>
-                        <li class="nav-item ml-3 btn-group-vertical" th:if="${loginUser!=null}">
-                            <a class="nav-link position-relative" th:href="@{/letter/list}">消息<span class="badge badge-danger">12</span></a>
-                        </li>
-                        <li class="nav-item ml-3 btn-group-vertical" th:if="${loginUser==null}">
-                            <a class="nav-link" th:href="@{/register}">注册</a>
-                        </li>
-                        <li class="nav-item ml-3 btn-group-vertical" th:if="${loginUser==null}">
-                            <a class="nav-link" th:href="@{/login}">登录</a>
-                        </li>
-                        <li class="nav-item ml-3 btn-group-vertical dropdown" th:if="${loginUser!=null}">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img th:src="${loginUser.headerUrl}" class="rounded-circle" style="width:30px;">
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-center" href="../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第一章素材和源码/源码/community-1.6/community/src/main/resources/templates/site/profile.html">个人主页</a>
-                                <a class="dropdown-item text-center" th:href="@{/user/setting}">账号设置</a>
-                                <a class="dropdown-item text-center" th:href="@{/logout}">退出登录</a>
-                                <div class="dropdown-divider"></div>
-                                <span class="dropdown-item text-center text-secondary" th:utext="${loginUser.username}">nowcoder</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- 搜索 -->
-                    <form class="form-inline my-2 my-lg-0" action="../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第一章素材和源码/源码/community-1.6/community/src/main/resources/templates/site/search.html">
-                        <input class="form-control mr-sm-2" type="search" aria-label="Search">
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
-                    </form>
-                </div>
-            </nav>
-        </div>
-    </header>
+<body class="zhi ">
+<div role="navigation" class="zu-top">
+    <div class="zg-wrap modal-shifting clearfix" id="zh-top-inner">
+        <a href="/" class="zu-top-link-logo" id="zh-top-link-logo" data-za-c="view_home" data-za-a="visit_home"
+           data-za-l="top_navigation_zhihu_logo">牛客</a>
+        <div class="top-nav-profile">
 
-    <!-- 内容 -->
-    <div class="main">
-        <div class="container">
-            <div class="position-relative">
-                <!-- 筛选条件 -->
-                <ul class="nav nav-tabs mb-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">最新</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">最热</a>
-                    </li>
-                </ul>
-                <button type="button" class="btn btn-primary btn-sm position-absolute rt-0" data-toggle="modal" data-target="#publishModal" th:if="${loginUser!=null}">我要发布</button>
-            </div>
-            <!-- 弹出框 -->
-            <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="publishModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="publishModalLabel">新帖发布</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">标题：</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">正文：</label>
-                                    <textarea class="form-control" id="message-text" rows="15"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" id="publishBtn">发布</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 提示框 -->
-            <div class="modal fade" id="hintModal" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="hintModalLabel">提示</h5>
-                        </div>
-                        <div class="modal-body" id="hintBody">
-                            发布完毕!
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 帖子列表 -->
-            <ul class="list-unstyled">
-                <li class="media pb-3 pt-3 mb-3 border-bottom" th:each="map:${discussPosts}">
-                    <a href="../../../../../../仿牛客网/Java高薪面试项目/所有素材和源码/第一章素材和源码/源码/community-1.6/community/src/main/resources/templates/site/profile.html">
-                        <img th:src="${map.user.headerUrl}" class="mr-4 rounded-circle" alt="用户头像" style="width:50px;height:50px;">
-                    </a>
-                    <div class="media-body">
-                        <h6 class="mt-0 mb-3">
-                            <a th:href="@{|/discuss/detail/${map.post.id}|}" th:utext="${map.post.title}">备战春招，面试刷题跟他复习，一个月全搞定！</a>
-                            <span class="badge badge-secondary bg-primary" th:if="${map.post.type==1}">置顶</span>
-                            <span class="badge badge-secondary bg-danger" th:if="${map.post.status==1}">精华</span>
-                        </h6>
-                        <div class="text-muted font-size-12">
-                            <u class="mr-3" th:utext="${map.user.username}">寒江雪</u> 发布于 <b th:text="${#dates.format(map.post.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-15 15:32:18</b>
-                            <ul class="d-inline float-right">
-                                <li class="d-inline ml-2">赞 11</li>
-                                <li class="d-inline ml-2">|</li>
-                                <li class="d-inline ml-2">回帖 <span th:text="${map.post.commentCount}">7</span></li>
-                            </ul>
-                        </div>
-                    </div>
+            <ul th:if="${user==null}" class="topnav-noauth clearfix">
+                <li>
+                    <a style="height: 43px" href="/reglogin">注册/登陆</a>
                 </li>
             </ul>
-            <!-- 分页 -->
-            <nav class="mt-5" th:if="${page.rows>0}" th:fragment="pagination">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
-                    </li>
-                    <li th:class="|page-item ${page.current==1?'disabled':''}|">
-                        <a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
-                    <li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
-                        <a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
-                    </li>
-                    <li th:class="|page-item ${page.current==page.total?'disabled':''}|">
-                        <a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" th:href="@{${page.path}(current=${page.total})}">末页</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
 
-    <!-- 尾部 -->
-    <footer class="bg-dark">
-        <div class="container">
-            <div class="row">
-                <!-- 二维码 -->
-                <div class="col-4 qrcode">
-                    <img src="https://uploadfiles.nowcoder.com/app/app_download.png" class="img-thumbnail" style="width:136px;">
-                </div>
-                <!-- 公司信息 -->
-                <div class="col-8 detail-info">
-                    <div class="row">
-                        <div class="col">
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">关于我们</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">加入我们</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">意见反馈</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">企业服务</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">联系我们</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">免责声明</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">友情链接</a>
-                                </li>
-                            </ul>
+            <a th:if="${user!=null}" th:href="'/user/'+${user.id}" href="" class="zu-top-nav-userinfo " id=":0"
+               role="button" aria-haspopup="true" aria-activedescendant="">
+                <span th:text="${user.name}" class="name">$!{user.name}</span>
+                <img th:alt="${user.name}" th:src="${user.head_url}" class="Avatar" src="$!{user.head_url}"
+                     alt="$!{user.name}">
+                <span id="zh-top-nav-new-pm" class="zg-noti-number zu-top-nav-pm-count" style="visibility:hidden"
+                      data-count="0">
+                    </span>
+            </a>
+            <ul th:if="${user!=null}" class="top-nav-dropdown" id="top-nav-profile-dropdown" aria-labelledby=":0">
+                <li>
+                    <a th:href="'/user/'+${user.id}" href="" tabindex="-1" id=":1">
+                        <i class="zg-icon zg-icon-dd-home"></i>我的主页
+                    </a>
+                </li>
+                <li>
+                    <a href="/msg/list" tabindex="-1" id=":2">
+                        <i class="zg-icon zg-icon-dd-pm"></i>私信
+                        <span id="zh-top-nav-pm-count" class="zu-top-nav-pm-count zg-noti-number"
+                              style="visibility:hidden" data-count="0">
+                    </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout" tabindex="-1" id=":4">
+                        <i class="zg-icon zg-icon-dd-logout"></i>退出
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <button th:if="${user!=null}" class="zu-top-add-question" id="zu-top-add-question">提问</button>
+
+        <div role="search" id="zh-top-search" class="zu-top-search">
+            <form method="GET" action="/search" id="zh-top-search-form" class="zu-top-search-form">
+                <input type="hidden" name="type" value="content">
+                <label for="q" class="hide-text">牛客搜索</label><input type="text" class="zu-top-search-input" id="q"
+                                                                    name="q" autocomplete="off" value=""
+                                                                    placeholder="搜索你感兴趣的内容..." role="combobox"
+                                                                    aria-autocomplete="list">
+                <button type="submit" class="zu-top-search-button"><span class="hide-text">搜索</span><span
+                        class="sprite-global-icon-magnifier-dark"></span></button>
+            </form>
+        </div>
+        <div id="zg-top-nav" class="zu-top-nav">
+            <ul class="zu-top-nav-ul zg-clear">
+                <li class="zu-top-nav-li current" id="zh-top-nav-home">
+                    <a class="zu-top-nav-link" href="/" id="zh-top-link-home" data-za-c="view_home"
+                       data-za-a="visit_home" data-za-l="top_navigation_home">首页</a>
+                </li>
+                <li class="zu-top-nav-li " id="zh-top-nav-explore">
+                    <a class="zu-top-nav-link" href="/">发现</a>
+                </li>
+
+                <li th:if="${user!=null}" class="top-nav-noti zu-top-nav-li ">
+                    <a class="zu-top-nav-link" href="#" id="zh-top-nav-count-wrap" role="button"><span
+                            class="mobi-arrow"></span>消息<span id="zh-top-nav-count"
+                                                              class="zu-top-nav-count zg-noti-number"
+                                                              style="display: none;">0</span></a>
+                </li>
+
+            </ul>
+            <div class="zu-top-nav-live zu-noti7-popup zg-r5px no-hovercard" id="zh-top-nav-live-new" role="popup"
+                 tabindex="0">
+                <div class="zu-top-nav-live-inner zg-r5px">
+                    <div class="zu-top-live-icon">&nbsp;</div>
+                    <div class="zu-home-noti-inner" id="zh-top-nav-live-new-inner">
+                        <div class="zm-noti7-popup-tab-container clearfix" tabindex="0" role="tablist">
+                            <button class="zm-noti7-popup-tab-item message" role="tab">
+                                <span class="icon">消息</span>
+                            </button>
+                            <button class="zm-noti7-popup-tab-item user" role="tab">
+                                <span class="icon">用户</span>
+                            </button>
+                            <button class="zm-noti7-popup-tab-item thanks" role="tab">
+                                <span class="icon">赞同和感谢</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <ul class="nav btn-group-vertical company-info">
-                                <li class="nav-item text-white-50">
-                                    公司地址：北京市朝阳区大屯路东金泉时代3-2708北京牛客科技有限公司
-                                </li>
-                                <li class="nav-item text-white-50">
-                                    联系方式：010-60728802(电话)&nbsp;&nbsp;&nbsp;&nbsp;admin@nowcoder.com
-                                </li>
-                                <li class="nav-item text-white-50">
-                                    牛客科技©2018 All rights reserved
-                                </li>
-                                <li class="nav-item text-white-50">
-                                    京ICP备14055008号-4 &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <img src="http://static.nowcoder.com/company/images/res/ghs.png" style="width:18px;">
-                                    京公网安备 11010502036488号
-                                </li>
-                            </ul>
+                    <div class="zm-noti7-frame-border top"></div>
+                    <div class="zm-noti7-frame">
+                        <div class="zm-noti7-content message zh-scroller" style="position: relative; overflow: hidden;">
+                            <div class="zh-scroller-inner" style="height: 100%; width: 150%; overflow: auto;">
+                                <div class="zh-scroller-content"
+                                     style="position: static; display: block; visibility: visible; overflow: hidden; width: 315px; min-height: 100%;">
+                                    <div class="zm-noti7-content-inner">
+                                        <div class="zm-noti7-content-body">
+                                            <div class="zm-noti7-popup-loading">
+                                                <span class="noti-spinner-loading"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="zh-scroller-bar-container"
+                                 style="position: absolute; right: 1px; top: 0px; height: 98px; width: 6px; border: 1px solid rgb(68, 68, 68); opacity: 0; cursor: default; border-radius: 2px; -webkit-user-select: none; background: rgb(102, 102, 102);">
+                                <div style="-webkit-user-select: none;"></div>
+                            </div>
+                            <div class="zh-scroller-bar"
+                                 style="position: absolute; right: 2px; top: 2px; opacity: 0.5; width: 6px; border-radius: 3px; cursor: default; -webkit-user-select: none; display: none; background: rgb(0, 0, 0);"></div>
                         </div>
+                        <div class="zm-noti7-content user zh-scroller"
+                             style="display: none; position: relative; overflow: hidden;">
+                            <div class="zh-scroller-inner" style="height: 100%; width: 150%; overflow: auto;">
+                                <div class="zh-scroller-content"
+                                     style="position: static; display: block; visibility: visible; overflow: hidden; width: 315px; min-height: 100%;">
+                                    <div class="zm-noti7-content-inner">
+                                        <div class="zm-noti7-content-body">
+                                            <div class="zm-noti7-popup-loading">
+                                                <span class="noti-spinner-loading"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="zh-scroller-bar-container"
+                                 style="position: absolute; right: 1px; top: 0px; height: 98px; width: 6px; border: 1px solid rgb(68, 68, 68); opacity: 0; cursor: default; border-radius: 2px; -webkit-user-select: none; background: rgb(102, 102, 102);">
+                                <div style="-webkit-user-select: none;"></div>
+                            </div>
+                            <div class="zh-scroller-bar"
+                                 style="position: absolute; right: 2px; top: 2px; opacity: 0.5; width: 6px; border-radius: 3px; cursor: default; -webkit-user-select: none; display: none; background: rgb(0, 0, 0);"></div>
+                        </div>
+                        <div class="zm-noti7-content thanks zh-scroller"
+                             style="display: none; position: relative; overflow: hidden;">
+                            <div class="zh-scroller-inner" style="height: 100%; width: 150%; overflow: auto;">
+                                <div class="zh-scroller-content"
+                                     style="position: static; display: block; visibility: visible; overflow: hidden; width: 315px; min-height: 100%;">
+                                    <div class="zm-noti7-content-inner">
+                                        <div class="zm-noti7-content-body">
+                                            <div class="zm-noti7-popup-loading">
+                                                <span class="noti-spinner-loading"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="zh-scroller-bar-container"
+                                 style="position: absolute; right: 1px; top: 0px; height: 98px; width: 6px; border: 1px solid rgb(68, 68, 68); opacity: 0; cursor: default; border-radius: 2px; -webkit-user-select: none; background: rgb(102, 102, 102);">
+                                <div style="-webkit-user-select: none;"></div>
+                            </div>
+                            <div class="zh-scroller-bar"
+                                 style="position: absolute; right: 2px; top: 2px; opacity: 0.5; width: 6px; border-radius: 3px; cursor: default; -webkit-user-select: none; display: none; background: rgb(0, 0, 0);"></div>
+                        </div>
+                    </div>
+                    <div class="zm-noti7-frame-border bottom"></div>
+                    <div class="zm-noti7-popup-footer">
+                        <a href="" class="zm-noti7-popup-footer-all zg-right">查看全部 »</a>
+                        <a href="" class="zm-noti7-popup-footer-set" title="通知设置"><i
+                                class="zg-icon zg-icon-settings"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 </div>
+<link rel="stylesheet" href="../styles/index.css">
+<link rel="stylesheet" href="../styles/detail.css">
+<div class="zg-wrap zu-main clearfix " role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <div class="zg-section" id="zh-home-list-title">
+                <i class="zg-icon zg-icon-feedlist"></i>最新动态
+                <input type="hidden" id="is-topstory">
+                <span class="zg-right zm-noti-cleaner-setting" style="list-style:none">
+                        <a href="" class="zg-link-gray-normal">
+                            <i class="zg-icon zg-icon-settings"></i>设置</a></span>
+            </div>
+            <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list"
+                 data-widget="navigable"
+                 data-navigable-options="{&quot;items&quot;:&quot;&gt; .zh-general-list .feed-content&quot;,&quot;offsetTop&quot;:-82}">
+                <a href="javascript:;" class="zu-main-feed-fresh-button" id="zh-main-feed-fresh-button"
+                   style="display:none"></a>
+                <div id="js-home-feed-list" class="zh-general-list topstory clearfix"
+                     data-init="{&quot;params&quot;: {}, &quot;nodename&quot;: &quot;TopStory2FeedList&quot;}"
+                     data-delayed="true" data-za-module="TopStoryFeedList">
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-<script th:src="@{/js/global.js}"></script>
-<script th:src="@{js/index.js}"></script>
+
+                    <div th:each="vo:${vos}" class="feed-item folding feed-item-hook feed-item-2
+                        " feed-item-a="" data-type="a" id="feed-2" data-za-module="FeedItem" data-za-index="">
+                        <meta itemprop="ZReactor" data-id="389034"
+                              data-meta="{&quot;source_type&quot;: &quot;promotion_answer&quot;, &quot;voteups&quot;: 4168, &quot;comments&quot;: 69, &quot;source&quot;: []}">
+                        <div class="feed-item-inner">
+                            <div class="avatar">
+                                <a th:title="${vo.get('user').name}" th:href="'/user/'+${vo.get('user').id}" title=""
+                                   data-tip="" class="zm-item-link-avatar" target="_blank" href="">
+                                    <img th:src="@{${vo.get('user').head_url}}" src="" class="zm-item-img-avatar"></a>
+                            </div>
+                            <div class="feed-main">
+                                <div class="feed-content" data-za-module="AnswerItem">
+                                    <meta itemprop="answer-id" content="389034">
+                                    <meta itemprop="answer-url-token" content="13174385">
+                                    <h2 class="feed-title">
+                                        <a th:text="${vo.get('question').title}"
+                                           th:href="'/question/'+${vo.get('question').id}" class="question_link"
+                                           href=""></a></h2>
+                                    <div class="feed-question-detail-item">
+                                        <div class="question-description-plain zm-editable-content"></div>
+                                    </div>
+                                    <div class="expandable entry-body">
+                                        <div class="zm-item-vote">
+                                            <a th:text="${vo.get('followCount')}"
+                                               class="zm-item-vote-count js-expand js-vote-count" href="javascript:;"
+                                               data-bind-votecount="">4168</a></div>
+                                        <div class="zm-item-answer-author-info">
+                                            <a th:text="${vo.get('user').name}" th:href="'/user/'+${vo.get('user').id}"
+                                               class="author-link" data-tip="p$b$amuro1230" target="_blank" href=""></a>
+                                            [['，'+${#dates.format(vo.get('question').created_date,'yyyy年MM月dd日
+                                            HH:mm:ss')}]]
+                                        </div>
+                                        <div class="zm-item-vote-info" data-votecount="4168" data-za-module="VoteInfo">
+                                                <span class="voters text">
+                                                    <a href="#" class="more text">
+                                                        <span class="js-voteCount">4168</span>&nbsp;人赞同</a></span>
+                                        </div>
+                                        <div class="zm-item-rich-text expandable js-collapse-body"
+                                             data-resourceid="123114" data-action="/answer/content"
+                                             data-author-name="李淼" data-entry-url="/question/19857995/answer/13174385">
+                                            <div class="zh-summary summary clearfix">
+                                                [[${vo.get('question').content}]]...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-meta">
+                                        <div class="zm-item-meta answer-actions clearfix js-contentActions">
+                                            <div class="zm-meta-panel">
+                                                <a data-follow="q:link" class="follow-link zg-follow meta-item"
+                                                   href="javascript:;" id="sfb-123114">
+                                                    <i class="z-icon-follow"></i>关注问题</a>
+                                                <a th:text="${vo.get('question').comment_count}+ '条评论'" href="#"
+                                                   name="addcomment"
+                                                   class="meta-item toggle-comment js-toggleCommentBox">
+                                                    <i class="z-icon-comment"></i>100 条评论</a>
+
+
+                                                <button class="meta-item item-collapse js-collapse">
+                                                    <i class="z-icon-fold"></i>收起
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li th:if="${page>1}" class="previous"><a th:href="'/?p='+${page-1}" href="#"><span
+                                aria-hidden="true">&larr;</span> Older</a></li>
+                        <li th:if="${end==0}" class="next"><a th:href="'/?p='+${page+1}" href="#">Newer <span
+                                aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
+                <!--<a href="javascript:;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more" style="">更多</a></div>-->
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/scripts/main/site/detail.js"></script>
+    <script type="text/javascript" src="/scripts/main/jquery.js"></script>
+    <script type="text/javascript" src="/scripts/main/base/base.js"></script>
+    <script type="text/javascript" src="/scripts/main/base/util.js"></script>
+    <script type="text/javascript" src="/scripts/main/base/event.js"></script>
+    <script type="text/javascript" src="/scripts/main/util/action.js"></script>
+    <script type="text/javascript" src="/scripts/main/util/business.js"></script>
+    <script type="text/javascript" src="/scripts/main/component/component.js"></script>
+    <script type="text/javascript" src="/scripts/main/component/popup.js"></script>
+    <script type="text/javascript" src="/scripts/main/component/popupAdd.js"></script>
+    <script type="text/javascript" src="/scripts/main/component/popupMsg.js"></script>
+    <script type="text/javascript" src="/scripts/main/site/home.js"></script>
+
 </body>
 </html>
