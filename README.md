@@ -1,6 +1,18 @@
 # 社区项目
 
-Springboot+Mybatis+Thymeleaf开发，数据库使用Mysql+redis，异步框架处理消息推送，同时使用了Pyspider爬虫进行网站内容数据填充。
+Yumuing 博客社区论坛项目：
+
++ 项目角色：
+
+  负责后端各部分的功能实现，完成前后端对接工作。
+
++ 项目描述：
+
+  一个基本功能完整的博客社区论坛项目。项目主要功能有：基于邮件激活的注册方式，基于MD5加密与加盐的密码存储方式，登录功能加入了随机验证码的验证。实现登陆状态检查、为游客与已登录用户展示不同界面与功能。支持用户上传头像，实现发布帖子、评论帖子、发送私信与过滤敏感词等功能。实现了点赞，关注与系统通知功能。接口文档平台采用 ApiFox ，代码托管平台采用 GitHub。
+
++ 技术栈：
+
+  SpringBoot、SSM（Spring、SpringMVC、Mybatis）、SpringSecurity、Redis、Vue、Kafka、Elasticsearch、JWT
 
 ***
 
